@@ -32,3 +32,7 @@ Route::post('/users/destroy', 'UsersController@destroy')->name('users/destroy');
 Route::get('/users/change', 'UsersController@change')->name('users/change');
 Route::post('/users/password', 'UsersController@password')->name('users/password');
 /**Users**/
+
+/**Reservations**/
+Route::post('/reservations/news', 'ReservationController@news')->name('reservations');
+/**Reservations**/

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Reservation;
+use DateTime;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -17,12 +20,20 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function index()
     {
-        return view('home');
+        $DateSearch = date('Y-m-d');
+        $reservationsUser = DB::table('reservation')->where('user_id','=',Auth::id())
+        ->where('created_at','>=',$DateSearch." 00:00:00")
+            ->where('created_at','<=',$DateSearch." 23:59:59")->get();
+
+        $reservationsAll = DB::table('reservation')
+            ->where('created_at','>=',$DateSearch." 00:00:00")
+            ->where('created_at','<=',$DateSearch." 23:59:59")->get();
+
+        return view('home', compact('reservationsUser','reservationsAll'));
     }
 }

@@ -54,6 +54,7 @@ class UsersController extends Controller
 
 
         $email_verified_at = new DateTime('now');
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
