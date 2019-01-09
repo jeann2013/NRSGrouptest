@@ -8,6 +8,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UsersController extends Controller
 {
@@ -61,6 +62,8 @@ class UsersController extends Controller
             'email_verified_at' => $email_verified_at
         ]);
 
+        Log::debug('Se creo usuario:'. $request->name ." Apellido: ". $request->lname );
+
         return redirect('users');
     }
 
@@ -97,6 +100,8 @@ class UsersController extends Controller
             'lname' => $request->lname,
         ]);
 
+        Log::debug('Se modifico usuario:'. $request->name ." Apellido: ". $request->lname );
+
         return redirect('users');
     }
 
@@ -117,6 +122,7 @@ class UsersController extends Controller
     public function destroy(Request $request)
     {
         User::where('id', $request->id)->delete();
+        Log::debug('Se elimino usuario:'. $request->name ." Apellido: ". $request->lname );
         return redirect('users');
     }
 
@@ -141,9 +147,8 @@ class UsersController extends Controller
         ]);
 
         User::where('id', Auth::user()->id)
-            ->update([
-                'password' => Hash::make($request->password),
-            ]);
+            ->update(['password' => Hash::make($request->password)]);
+        Log::debug('Se cambio password de usuario con Nombre:'. Auth::user()->name ." Apellido: ". Auth::user()->lname );
         return redirect('users');
     }
 
