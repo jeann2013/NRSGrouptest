@@ -25,7 +25,7 @@ Route::get('/users', 'UsersController@index')->name('users');
 Route::get('/users/add', 'UsersController@add')->name('users/add');
 Route::post('/users/new', 'UsersController@news')->name('users/new');
 Route::get('/users/edit/{id}', 'UsersController@edit');
-Route::post('/users/update', 'UsersController@update');
+Route::post('/users/update', 'UsersController@update')->name('users/update');
 Route::get('/users/delete/{id}', 'UsersController@delete');
-Route::post('/users/destroy', 'UsersController@destroy');
+Route::post('/users/destroy', 'UsersController@destroy')->name('users/destroy');
 /**Users**/
