@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -39,6 +40,7 @@ class UsersController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Illuminate\Validation\ValidationException
+     * @throws \Exception
      */
     public function news(Request $request)
     {
@@ -50,12 +52,13 @@ class UsersController extends Controller
         ]);
 
 
-
+        $email_verified_at = new DateTime('now');
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'lname' => $request->lname,
+            'email_verified_at' => $email_verified_at
         ]);
 
         return redirect('users');
@@ -75,6 +78,7 @@ class UsersController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Illuminate\Validation\ValidationException
+     * @throws \Exception
      */
     public function update(Request $request)
     {
