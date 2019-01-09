@@ -13,6 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    Cantidad de Personas: {{$reservationsUser->count()}}
+                </div>
+                <div class="card-body">
                     Butacas:
                 </div>
                 <div class="container">
