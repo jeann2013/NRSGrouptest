@@ -67,15 +67,22 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Salir') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{ route('users/change') }}">
+                                        {{ __('Cambio de password') }}
+                                    </a>
                                 </div>
                             </li>
+
+
                         @endguest
+
                     </ul>
                 </div>
             </div>
@@ -84,20 +91,22 @@
 
         <main class="py-4">
             @yield('content')
+            <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
+
+            <script>
+                $('#views').DataTable({
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                    },
+                    searching: false,
+                });
+
+            </script>
         </main>
     </div>
 
-    <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
 
-    <script>
-        $('#views').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-            }
-        });
-
-    </script>
 
 </body>
 </html>

@@ -16,7 +16,7 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Correo</th>
-                        <th>Actions</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
