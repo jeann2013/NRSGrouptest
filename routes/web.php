@@ -18,3 +18,21 @@ Route::get('/', function () {
 Auth::routes(['verify'=> true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+/**Users**/
+Route::get('/users', 'UsersController@index')->name('users');
+Route::get('/users/add', 'UsersController@add')->name('users/add');
+Route::post('/users/new', 'UsersController@news')->name('users/new');
+Route::get('/users/edit/{id}', 'UsersController@edit');
+Route::post('/users/update', 'UsersController@update')->name('users/update');
+Route::get('/users/delete/{id}', 'UsersController@delete');
+Route::post('/users/destroy', 'UsersController@destroy')->name('users/destroy');
+
+Route::get('/users/change', 'UsersController@change')->name('users/change');
+Route::post('/users/password', 'UsersController@password')->name('users/password');
+/**Users**/
+
+/**Reservations**/
+Route::post('/reservations/news', 'ReservationController@news')->name('reservations');
+/**Reservations**/
